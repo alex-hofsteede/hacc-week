@@ -84,4 +84,4 @@ chrome.browserAction.onClicked.addListener((tab) => {
   })
 })
 
-informUserAboutGithubTokenFeature()
+//informUserAboutGithubTokenFeature()

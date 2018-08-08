@@ -1,0 +1,6 @@
+.buggy {
+  background: linear-gradient(yellow 0%, orange 50%, red 100%);
+  background-position: 0px -1000px;
+  background-repeat: no-repeat;
+  background-size: 10000px 10000px;
+}
