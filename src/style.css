@@ -8,7 +8,11 @@
 
 .buggy-line>a {
     float:right;
-    background-image:url('chrome-extension://__MSG_@@extension_id__/images/view-in-sentry.svg');
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/view-in-sentry.svg');
+    width: 102px;
+    height: 13px;
+    background-size: 102px 13px;
+    margin-top: 3px;
 }
 
 .buggy-line {
