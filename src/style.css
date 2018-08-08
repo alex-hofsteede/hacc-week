@@ -17,6 +17,9 @@
     color: #010202;
     font-size: 11px;
 }
+.buggy-line>a:hover {
+    text-decoration: none;
+}
 
 .buggy-line {
   background: linear-gradient(rgba(255, 255, 0, 0.1),  0%, rgba(255, 165, 0, 0.1) 50%, rgba(255, 0, 0, 0.1) 100%);
