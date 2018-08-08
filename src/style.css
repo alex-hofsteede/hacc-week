@@ -12,7 +12,10 @@
     background-size: 15px 13px;
     background-repeat: no-repeat;
     padding-left: 20px;
-    background-position: 0px 3px;
+    background-position: 1px 3px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    color: #010202;
+    font-size: 10px;
 }
 
 .buggy-line {
