@@ -1,6 +1,6 @@
 /* global fetch, Request, Headers, chrome, localStorage */
 
-const API = 'https://api.github.com/repos/'
+const API = 'http://127.0.0.1:5000/'
 const GITHUB_TOKEN_KEY = 'x-github-token'
 
 const storage = chrome.storage.sync || chrome.storage.local
@@ -17,17 +17,6 @@ const getRepoInfoURI = (uri) => {
   const repoURI = uri.split('/')
 
   return repoURI[0] + '/' + repoURI[1]
-}
-
-const getRepoContentURI = (uri) => {
-  const repoURI = uri.split('/')
-  const treeBranch = repoURI.splice(2, 2, 'contents')
-
-  if (treeBranch && treeBranch[1]) {
-    repoURI.push('?ref=' + treeBranch[1])
-  }
-
-  return repoURI.join('/')
 }
 
 const checkStatus = (response) => {
@@ -75,20 +64,26 @@ const checkForRepoPage = () => {
   repoURI = repoURI.endsWith('/') ? repoURI.slice(0, -1) : repoURI
 
   if (isBlob(repoURI)) {
-    console.log(repoURI)
     const tdElems = document.querySelector('span.github-repo-size-td')
 
     if (!tdElems) {
-        getAPIData(getRepoContentURI(repoURI), (data) => {
-        const scores = {"1": 0.5, "5": 0.1, "10": 1} // = data
-
+        getAPIData(repoURI, (scores) => {
         for (const line in scores) {
-            const lineElem = document.getElementById('L' + line);
+            let [score, issueUrl] = scores[line];
+            const gutterElem = document.getElementById('L' + line);
+            if (gutterElem) {
+                gutterElem.className += " buggy-gutter";
+                gutterElem.style.cssText = ("background-position: 0 " + Math.round(score * 100) + "%;");
+            }
+            const lineElem = document.getElementById('LC' + line);
             if (lineElem) {
+                lineElem.className += " buggy-line";
+                lineElem.style.cssText = ("background-position: 0 " + Math.round(score * 100) + "%;");
 
-                lineElem.className += " buggy";
-                console.log(("background-position: 0 " + Math.round(scores[line] * 100) + "%;"));
-                lineElem.style.cssText = ("background-position: 0 " + Math.round(scores[line] * 100) + "%;");
+                let link = document.createElement("a");
+                link.href = issueUrl;
+                link.text = "view in Sentry"
+                lineElem.appendChild(link);
             }
         }
       })
