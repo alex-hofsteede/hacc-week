@@ -9,6 +9,7 @@
 .buggy-line>a {
     float:right;
     background-image:url('chrome-extension://__MSG_@@extension_id__/images/view-in-sentry.svg');
+    font-size:80%;
 }
 
 .buggy-line {
