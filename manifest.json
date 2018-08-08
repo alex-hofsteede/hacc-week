@@ -35,7 +35,7 @@
     }
   ],
   "web_accessible_resources": [
-      "images/view-in-sentry.svg"
+      "images/sentry-sm.svg"
   ],
   "browser_action": {
     "default_icon": {

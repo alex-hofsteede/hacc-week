@@ -73,6 +73,7 @@ const checkForRepoPage = () => {
 
                     let link = document.createElement("a");
                     link.href = issueUrl;
+                    link.text = "view in sentry";
                     lineElem.appendChild(link);
                 }
             }
