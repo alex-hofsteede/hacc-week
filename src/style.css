@@ -1,10 +1,28 @@
+:root {
+    --score-color: linear-gradient(rgba(255, 255, 0, 1),  0%, rgba(255, 165, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
+    --score-bg: linear-gradient(rgba(255, 255, 0, 0.1),  0%, rgba(255, 165, 0, 0.1) 50%, rgba(255, 0, 0, 0.1) 100%);
+}
+
 .buggy-gutter {
-  background: linear-gradient(rgba(255, 255, 0, 1),  0%, rgba(255, 165, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
+  background: var(--score-bg);
   background-position: 0px -1000px;
+  background-repeat: no-repeat;
+  background-size: 100% 10000px;
+}
+
+.buggy-gutter::after {
+  content: "";
+  display: inline-block;
+  float: left;
+  position:relative;
+  left: -10px;
+  width: 5px;
+  height: 20px;
+  background: var(--score-color);
+  background-position: inherit;
   background-repeat: no-repeat;
   background-size: 5px 10000px;
 }
-
 
 .buggy-line>a {
     float:right;
@@ -22,15 +40,29 @@
 }
 
 .buggy-line {
-  background: linear-gradient(rgba(255, 255, 0, 0.1),  0%, rgba(255, 165, 0, 0.1) 50%, rgba(255, 0, 0, 0.1) 100%);
+  background: var(--score-bg);
   background-position: 0px -1000px;
   background-repeat: no-repeat;
   background-size: 100% 10000px;
 }
 
 .buggy-file {
-  background: linear-gradient(rgba(255, 255, 0, 1),  0%, rgba(255, 165, 0, 1) 50%, rgba(255, 0, 0, 1) 100%);
+  background: var(--score-bg);
   background-position: 0px -1000px;
+  background-repeat: no-repeat;
+  background-size: 100% 10000px;
+}
+
+.buggy-file::after {
+  content: "";
+  display: inline-block;
+  position:relative;
+  float:left;
+  left:-971px;
+  width: 5px;
+  height: 33px;
+  background: var(--score-color);
+  background-position: inherit;
   background-repeat: no-repeat;
   background-size: 5px 10000px;
 }
