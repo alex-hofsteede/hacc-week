@@ -60,7 +60,8 @@ const checkForRepoPage = () => {
     if (type == "blob") {
         getAPIData(repoURI, (scores) => {
             for (const line in scores) {
-                let [score, issueUrl] = scores[line];
+                let [score, errorType, issueUrl, sparkline] = scores[line];
+
                 const gutterElem = document.getElementById('L' + line);
                 if (gutterElem) {
                     gutterElem.className += " buggy-gutter";
@@ -73,7 +74,7 @@ const checkForRepoPage = () => {
 
                     let link = document.createElement("a");
                     link.href = issueUrl;
-                    link.text = "VIEW IN SENTRY";
+                    link.text = "VIEW " + errorType + " IN SENTRY";
                     lineElem.appendChild(link);
                 }
             }
