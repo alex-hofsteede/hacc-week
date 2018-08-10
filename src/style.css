@@ -34,6 +34,7 @@
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     color: #010202;
     font-size: 11px;
+    width:120px;
 }
 .buggy-line>a:hover {
     text-decoration: none;
@@ -65,4 +66,22 @@
   background-position: inherit;
   background-repeat: no-repeat;
   background-size: 5px 10000px;
+}
+
+.sparkline {
+    overflow:visible;
+    margin-top:2px;
+    margin-right:5px;
+    display: inline-block;
+    float: right;
+}
+
+.sparkline path {
+    stroke:#010202;
+    stroke-width:1.5px;
+    fill:none;
+}
+
+.sparkline > rect {
+    fill:#f00;
 }

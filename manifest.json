@@ -6,9 +6,9 @@
   "homepage_url": "https://github.com/alex-hofsteede/hacc-week",
   "author": "Alex Hofsteede / Ted Kaemming",
   "icons": {
-    "16": "icons/ghrs16.png",
-    "48": "icons/ghrs48.png",
-    "128": "icons/ghrs128.png"
+    "16": "icons/sentry-16.png",
+    "48": "icons/sentry-48.png",
+    "128": "icons/sentry-128.png"
   },
   "permissions": [
     "storage",
@@ -39,9 +39,9 @@
   ],
   "browser_action": {
     "default_icon": {
-      "16": "icons/ghrs16.png",
-      "48": "icons/ghrs48.png",
-      "128": "icons/ghrs128.png"
+      "16": "icons/sentry-16.png",
+      "48": "icons/sentry-48.png",
+      "128": "icons/sentry-128.png"
     },
     "default_title": "GitHub / Sentry Bad Code: Click to set/remove access token"
   }

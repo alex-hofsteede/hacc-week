@@ -52,6 +52,30 @@ const getAPIData = (uri, callback) => {
 
 const getFileName = (text) => text.trim().split('/')[0]
 
+const makeSparkline = (values) => {
+    const xmlns = "http://www.w3.org/2000/svg";
+    const width = 50;
+    const height = 14;
+
+    let sparkline = document.createElementNS(xmlns, "svg");
+    sparkline.setAttribute('class', 'sparkline');
+    sparkline.setAttribute('width', width);
+    sparkline.setAttribute('height', height);
+    sparkline.setAttribute('version', '1.1');
+
+    let path = document.createElementNS(xmlns, "path")
+    sparkline.appendChild(path);
+
+    var limits = [Math.max(0, Math.min.apply(this, values) - 1), Math.max.apply(this, values) + 1];
+    var scale = Math.pow(10, Math.floor(Math.log10(limits[1] - limits[0])));
+    var domain = [Math.floor(limits[0] / scale) * scale, Math.ceil(limits[1] / scale) * scale];
+    var range = [height-1, 0];
+    var step = width / Math.max(values.length - 1, 1)
+    pathString = values.map(function (v, i) { return "L" + (i * step) + "," + (((v - domain[0]) / (domain[1] - domain[0]) * (range[1] - range[0])) + range[0]) ;}).join()
+    path.setAttribute("d", "M" + pathString.substring(1));
+    return sparkline;
+}
+
 const checkForRepoPage = () => {
     let repoURI = window.location.pathname.substring(1)
     repoURI = repoURI.endsWith('/') ? repoURI.slice(0, -1) : repoURI
@@ -60,7 +84,7 @@ const checkForRepoPage = () => {
     if (type == "blob") {
         getAPIData(repoURI, (scores) => {
             for (const line in scores) {
-                let [score, errorType, issueUrl, sparkline] = scores[line];
+                let [score, errorType, issueUrl, history] = scores[line];
 
                 const gutterElem = document.getElementById('L' + line);
                 if (gutterElem) {
@@ -72,10 +96,13 @@ const checkForRepoPage = () => {
                     lineElem.className += " buggy-line";
                     lineElem.style.cssText = ("background-position: 0 " + Math.round(score * 100) + "%;");
 
+
                     let link = document.createElement("a");
                     link.href = issueUrl;
-                    link.text = "VIEW " + errorType + " IN SENTRY";
+                    link.text = errorType;
                     lineElem.appendChild(link);
+
+                    lineElem.appendChild(makeSparkline(history));
                 }
             }
         })
